@@ -288,6 +288,17 @@
                 },
                 {
                     "name": "",
+                    "id": "77fa4208-1750-443d-ae55-8418ab578590",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -487,6 +498,17 @@
                 {
                     "name": "",
                     "id": "946fe26a-6dc8-4041-a549-da3a4a5afe39",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "326ffd97-3c0d-4b05-a7a8-9a4a59ee33ba",
                     "path": "",
                     "interactions": "",
                     "processors": "",
