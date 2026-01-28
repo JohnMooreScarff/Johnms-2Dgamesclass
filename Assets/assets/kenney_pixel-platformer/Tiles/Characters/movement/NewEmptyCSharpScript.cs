@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     private float horizInput;
     private bool isGrounded;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -35,8 +37,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (spriteRenderer != null)
         {
-            if (horizInput > 0.1f) spriteRenderer.flipX = false;
-            else if (horizInput < -0.1f) spriteRenderer.flipX = true;
+            if (horizInput > 0.1f) spriteRenderer.flipX = true;
+            else if (horizInput < -0.1f) spriteRenderer.flipX = false;
+        }
+        //update animaters peramiters 
+        if(animator != null)
+        {
+            animator.SetFloat("moveInput", Mathf.Abs(horizInput));
+            animator.SetBool("isGrounded", isGrounded);
+
         }
     }
 
