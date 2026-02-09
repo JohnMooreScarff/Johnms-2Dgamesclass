@@ -1,6 +1,7 @@
 using UnityEngine;
+
 [RequireComponent(typeof(SpriteRenderer))]
-public class PlayerHealth: MonoBehaviour, IDamageable
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] float maxHealth = 100f;
     [SerializeField] float invulnerabilityDuration = 1f;
@@ -8,8 +9,9 @@ public class PlayerHealth: MonoBehaviour, IDamageable
 
     float currentHealth;
     float invulnerabilityTimer;
+
     SpriteRenderer sprite;
-    float blinktimer;
+    float blinkTimer;
     bool blinking;
 
     void Awake()
@@ -17,49 +19,55 @@ public class PlayerHealth: MonoBehaviour, IDamageable
         currentHealth = maxHealth;
         sprite = GetComponent<SpriteRenderer>();
     }
-    void update()
+
+    void Update()
     {
-        if(invulnerabilityTimer > 0f)
-        {
-            invulnerabilityTimer-=Time.deltaTime;
-            HandleBlink();
-        }
+        if (invulnerabilityTimer > 0f)
+            invulnerabilityTimer -= Time.deltaTime;
+
+        HandleBlink();
     }
+
     public bool ApplyDamage(float amount)
     {
-        if(currentHealth <= 0f || invulnerabilityTimer > 0f)
-        return(false);
+        if (currentHealth <= 0f || invulnerabilityTimer > 0f)
+            return false;
+
         currentHealth -= amount;
-        if(currentHealth <= 0f)
+
+        if (currentHealth <= 0f)
         {
             Die();
             return true;
-        
         }
+
         invulnerabilityTimer = invulnerabilityDuration;
         StartBlink(invulnerabilityDuration);
         return true;
     }
+
     void StartBlink(float duration)
     {
         blinking = true;
-        blinktimer = duration;
+        blinkTimer = duration;
     }
+
     void HandleBlink()
     {
-        if(!blinking) 
-        {
-            return;
-        }
-        blinktimer -= Time.deltaTime;
-        if(blinktimer <= 0f)
+        if (!blinking) return;
+
+        blinkTimer -= Time.deltaTime;
+        if (blinkTimer <= 0f)
         {
             blinking = false;
             sprite.enabled = true;
             return;
         }
-        sprite.enabled = Mathf.FloorToInt(blinktimer/blinkInterval) % 2 == 0;
+
+        sprite.enabled =
+            Mathf.FloorToInt(blinkTimer / blinkInterval) % 2 == 0;
     }
+
     void Die()
     {
         gameObject.SetActive(false);

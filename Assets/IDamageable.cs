@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public interface IDamageable 
+public interface IDamageable
 {
     bool ApplyDamage(float amount);
 }
